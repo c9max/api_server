@@ -10,6 +10,9 @@ const joi = require("@hapi/joi");
 const cors = require("cors");
 app.use(cors());
 
+// 托管静态资源,让用户能够访问文章封面图片
+app.use("/uploads", express.static("./uploads", ));
+
 // 配置解析表单数据的中间件,注意:这个中间件只能解析`application/x-www-form-urlencoded`格式的表单数据
 app.use(express.urlencoded({ extended: false }));
 
@@ -41,6 +44,9 @@ app.use("/my", userinfoRouter);
 // 导入并使用文章分类的路由模块
 const artcateRouter = require("./router/artcate");
 app.use("/my/article", artcateRouter);
+// 导入并使用文章的路由模块
+const articleRouter = require("./router/article");
+app.use("/my/article", articleRouter);
 
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {
