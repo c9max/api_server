@@ -38,6 +38,9 @@ app.use("/api", userRouter);
 // 导入并使用用户信息的路由模块
 const userinfoRouter = require("./router/userinfo");
 app.use("/my", userinfoRouter);
+// 导入并使用文章分类的路由模块
+const artcateRouter = require("./router/artcate");
+app.use("/my/article", artcateRouter);
 
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {
